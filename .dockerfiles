@@ -16,6 +16,16 @@ alpine() {
 		$DOCKERFILES_REPO/alpine
 }
 
+cookiecutter() {
+	_shlex cookiecutter $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
+}
+
 jre_8() {
 	_shlex java $@
 	docker run \
@@ -87,6 +97,7 @@ alias py3="python3"
 
 # Aliases to fallback to the default Dockerfile CMD which should be the $USER shell.
 alias alpine-shell="alpine"
+alias cookiecutter-shell="cookiecutter DEFAULT_CMD"
 alias py3-shell="python3 DEFAULT_CMD"
 alias python-shell="python3 DEFAULT_CMD"
 alias python3-shell="python3 DEFAULT_CMD"
