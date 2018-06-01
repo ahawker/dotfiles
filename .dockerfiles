@@ -1,0 +1,96 @@
+#!/usr/bin/env sh
+#
+# Shell functions for running commands inside containers.
+#
+# See: https://github.com/ahawker/dockerfiles
+
+DOCKERFILES_REPO=ahawker
+DOCKERFILES_ARGS=""
+
+alpine() {
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/alpine
+}
+
+jre_8() {
+	_shlex java $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/jre-8 $DOCKERFILES_ARGS
+}
+
+python3() {
+	_shlex python3 $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
+}
+
+scala() {
+	_shlex scala $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
+}
+
+sbt() {
+	_shlex sbt $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
+}
+
+terraform() {
+	_shlex terraform $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $HOME/.aws:$HOME/.aws:ro \
+		--volume $(pwd):/app:rw \
+		--env AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID \
+		--env AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY \
+		--env AWS_SESSION_TOKEN:$AWS_SESSION_TOKEN \
+		--env AWS_DEFAULT_REGION:$AWS_DEFAULT_REGION \
+		--env AWS_DEFAULT_OUTPUT:$AWS_DEFAULT_OUTPUT \
+		--env AWS_PROFILE:$AWS_PROFILE \
+		--env AWS_CA_BUNDLE:$AWS_CA_BUNDLE \
+		--env AWS_SHARED_CREDENTIALS_FILE:$AWS_SHARED_CREDENTIALS_FILE \
+		--env AWS_CONFIG_FILE:$AWS_CONFIG_FILE \
+		$DOCKERFILES_REPO/terraform $DOCKERFILES_ARGS
+}
+
+_shlex() {
+	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=($@); fi
+}
+
+# Aliases to avoid specifying a specific version, normally the latest available.
+alias jre="jre_8"
+alias python="python3"
+alias py3="python3"
+
+# Aliases to fallback to the default Dockerfile CMD which should be the $USER shell.
+alias alpine-shell="alpine"
+alias py3-shell="python3 DEFAULT_CMD"
+alias python-shell="python3 DEFAULT_CMD"
+alias python3-shell="python3 DEFAULT_CMD"
+alias scala-shell="scala DEFAULT_CMD"
+alias sbt-shell="sbt DEFAULT_CMD"
+alias jre-shell="jre DEFAULT_CMD"
+alias terraform-shell="terraform DEFAULT_CMD"
