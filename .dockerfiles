@@ -36,6 +36,16 @@ jre8() {
 		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
 
+maven() {
+	_shlex mvn $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
+}
+
 python3() {
 	_shlex python3 $@
 	docker run \
@@ -102,6 +112,9 @@ _shlex() {
 
 # Aliases to avoid specifying a specific version, normally the latest available.
 alias jre="jre8"
+alias mvn="maven"
+alias mvn3="maven"
+alias maven3="maven"
 alias python="python3"
 alias py3="python3"
 alias ruby="ruby24"
@@ -110,6 +123,10 @@ alias rb24="ruby24"
 # Aliases to fallback to the default Dockerfile CMD which should be the $USER shell.
 alias alpine-shell="alpine"
 alias cookiecutter-shell="cookiecutter DEFAULT_CMD"
+alias mvn-shell="maven DEFAULT_CMD"
+alias mvn3-shell="maven DEFAULT_CMD"
+alias maven-shell="maven DEFAULT_CMD"
+alias maven3-shell="maven DEFAULT_CMD"
 alias py3-shell="python3 DEFAULT_CMD"
 alias python-shell="python3 DEFAULT_CMD"
 alias python3-shell="python3 DEFAULT_CMD"
