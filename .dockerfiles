@@ -6,12 +6,14 @@
 
 DOCKERFILES_REPO=ahawker
 DOCKERFILES_ARGS=""
+DOCKERFILES_ENV_FILE=".dockerfiles.env"
 
 alpine() {
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/alpine
 }
@@ -22,6 +24,7 @@ cookiecutter() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
 }
@@ -32,6 +35,7 @@ jre8() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
@@ -42,6 +46,7 @@ maven() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
 }
@@ -52,6 +57,7 @@ python3() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
 }
@@ -62,6 +68,7 @@ ruby24() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
 }
@@ -72,6 +79,7 @@ scala() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
@@ -82,6 +90,7 @@ sbt() {
 		--interactive \
 		--tty \
 		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
@@ -94,6 +103,7 @@ terraform() {
 		--rm \
 		--volume $HOME/.aws:$HOME/.aws:ro \
 		--volume $(pwd):/app:rw \
+		--env-file $DOCKERFILES_ENV_FILE \
 		--env AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID \
 		--env AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY \
 		--env AWS_SESSION_TOKEN:$AWS_SESSION_TOKEN \
