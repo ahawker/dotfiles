@@ -26,7 +26,7 @@ cookiecutter() {
 		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
 }
 
-jre_8() {
+jre8() {
 	_shlex java $@
 	docker run \
 		--interactive \
@@ -91,7 +91,7 @@ _shlex() {
 }
 
 # Aliases to avoid specifying a specific version, normally the latest available.
-alias jre="jre_8"
+alias jre="jre8"
 alias python="python3"
 alias py3="python3"
 
