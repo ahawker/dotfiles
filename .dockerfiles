@@ -46,6 +46,16 @@ python3() {
 		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
 }
 
+ruby24() {
+	_shlex irb $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume $(pwd):/app:rw \
+		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
+}
+
 scala() {
 	_shlex scala $@
 	docker run \
@@ -94,6 +104,8 @@ _shlex() {
 alias jre="jre8"
 alias python="python3"
 alias py3="python3"
+alias ruby="ruby24"
+alias rb24="ruby24"
 
 # Aliases to fallback to the default Dockerfile CMD which should be the $USER shell.
 alias alpine-shell="alpine"
@@ -101,6 +113,9 @@ alias cookiecutter-shell="cookiecutter DEFAULT_CMD"
 alias py3-shell="python3 DEFAULT_CMD"
 alias python-shell="python3 DEFAULT_CMD"
 alias python3-shell="python3 DEFAULT_CMD"
+alias rb24-shell="ruby24 DEFAULT_CMD"
+alias ruby-shell="ruby24 DEFAULT_CMD"
+alias ruby24-shell="ruby24 DEFAULT_CMD"
 alias scala-shell="scala DEFAULT_CMD"
 alias sbt-shell="sbt DEFAULT_CMD"
 alias jre-shell="jre DEFAULT_CMD"
