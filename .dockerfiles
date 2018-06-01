@@ -15,7 +15,7 @@ alpine() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/alpine
 }
@@ -27,7 +27,7 @@ cookiecutter() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
 }
@@ -39,7 +39,7 @@ jre8() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
@@ -51,7 +51,7 @@ maven() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):/app:rw \
+		--volume $(pwd):/$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
 }
@@ -63,7 +63,7 @@ python3() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
 }
@@ -75,7 +75,7 @@ ruby24() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
 }
@@ -87,7 +87,7 @@ scala() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
@@ -99,7 +99,7 @@ sbt() {
 		--tty \
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
@@ -111,7 +111,7 @@ terraform() {
 		--tty \
 		--rm \
 		--volume $HOME/.aws:$HOME/.aws:ro \
-		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
 		--workdir $DOCKERFILES_WORKDIR \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--env AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID \
