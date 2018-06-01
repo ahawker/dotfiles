@@ -16,6 +16,7 @@ alpine() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/alpine
 }
 
@@ -27,6 +28,7 @@ cookiecutter() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
 }
 
@@ -38,6 +40,7 @@ jre8() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
 
@@ -49,6 +52,7 @@ maven() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):/app:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
 }
 
@@ -60,6 +64,7 @@ python3() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
 }
 
@@ -71,6 +76,7 @@ ruby24() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
 }
 
@@ -82,6 +88,7 @@ scala() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
 
@@ -93,6 +100,7 @@ sbt() {
 		--rm \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
 
@@ -104,6 +112,7 @@ terraform() {
 		--rm \
 		--volume $HOME/.aws:$HOME/.aws:ro \
 		--volume $(pwd):$DOCKERFILES_WORKDIR:rw \
+		--workdir $DOCKERFILES_WORKDIR \
 		--env-file $DOCKERFILES_ENV_FILE \
 		--env AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID \
 		--env AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY \
