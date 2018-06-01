@@ -33,7 +33,7 @@ jre8() {
 		--tty \
 		--rm \
 		--volume $(pwd):/app:rw \
-		$DOCKERFILES_REPO/jre-8 $DOCKERFILES_ARGS
+		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
 
 python3() {
