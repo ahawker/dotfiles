@@ -68,6 +68,18 @@ node() {
 		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
 }
 
+npm() {
+	_shlex npm $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
+		--volume $(pwd):/$DOCKERFILES_WORKDIR \
+		--workdir $DOCKERFILES_WORKDIR \
+		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
+}
+
 python3() {
 	_shlex python3 $@
 	docker run \
@@ -162,6 +174,7 @@ alias maven-shell="maven DEFAULT_CMD"
 alias maven3-shell="maven DEFAULT_CMD"
 alias node-shell="node DEFAULT_CMD"
 alias nodejs-shell="node DEFAULT_CMD"
+alias npm-shell="npm DEFAULT_CMD"
 alias py3-shell="python3 DEFAULT_CMD"
 alias python-shell="python3 DEFAULT_CMD"
 alias python3-shell="python3 DEFAULT_CMD"
