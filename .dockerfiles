@@ -56,6 +56,18 @@ maven() {
 		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
 }
 
+node() {
+	_shlex node $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
+		--volume $(pwd):/$DOCKERFILES_WORKDIR \
+		--workdir $DOCKERFILES_WORKDIR \
+		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
+}
+
 python3() {
 	_shlex python3 $@
 	docker run \
@@ -135,6 +147,7 @@ alias jre="jre8"
 alias mvn="maven"
 alias mvn3="maven"
 alias maven3="maven"
+alias nodejs="node"
 alias python="python3"
 alias py3="python3"
 alias ruby="ruby24"
@@ -147,6 +160,8 @@ alias mvn-shell="maven DEFAULT_CMD"
 alias mvn3-shell="maven DEFAULT_CMD"
 alias maven-shell="maven DEFAULT_CMD"
 alias maven3-shell="maven DEFAULT_CMD"
+alias node-shell="node DEFAULT_CMD"
+alias nodejs-shell="node DEFAULT_CMD"
 alias py3-shell="python3 DEFAULT_CMD"
 alias python-shell="python3 DEFAULT_CMD"
 alias python3-shell="python3 DEFAULT_CMD"
