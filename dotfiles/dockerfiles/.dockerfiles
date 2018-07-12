@@ -6,7 +6,7 @@
 
 DOCKERFILES_REPO=ahawker
 DOCKERFILES_ARGS=""
-DOCKERFILES_ENV_FILE=".dockerfiles.env"
+DOCKERFILES_ENV_FILE="$HOME/.dockerfiles.env"
 DOCKERFILES_WORKDIR="/app"
 
 alpine() {
