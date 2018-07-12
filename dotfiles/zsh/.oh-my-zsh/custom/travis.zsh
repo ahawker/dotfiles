@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-[ -f /Users/hawker/.travis/travis.sh ] && source /Users/hawker/.travis/travis.sh
+# shellcheck disable=SC1090
+[ -f "$HOME/.travis/travis.sh" ] && . "$HOME/.travis/travis.sh"
