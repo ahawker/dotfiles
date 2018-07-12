@@ -2,4 +2,64 @@
 
 [![Build Status](https://travis-ci.org/ahawker/dotfiles.svg?branch=master)](https://travis-ci.org/ahawker/dotfiles)
 
-Contains dotfiles for tools I use often.
+Easily manage/deploy dotfiles using [GNU Stow](https://www.gnu.org/software/stow/).
+
+## Status
+
+This repository is under active development although the core functionality is in place.
+
+## Requirements
+
+* `$HOME` environment variable is set.
+* `command` executable is available.
+* `shellcheck` executable is available in path. **Test Only**
+
+## How does it work?
+
+The `Makefile` leverages [GNU Stow](https://www.gnu.org/software/stow/) to create symlinks from each subdirectory, "dotfile package", into your shell home directory.
+
+## Usage
+
+All functionality of this repository is exposed through the `Makefile`. You can see the available commands by running `make` or `make help`.
+
+```bash
+$ make help
+install                        Install all dotfile packages.
+reinstall                      Reinstall all dotfile packages.
+uninstall                      Uninstall all dotfiles packages.
+test                           Run 'shellcheck' tests against dotfile packages.
+help                           Print Makefile usage.
+```
+
+### All Packages
+
+If you wish to manage all dotfile packages, you should use `make [install|reinstall|uninstall]`.
+
+### Individual Packages
+
+If you wish to manage specific dotfile packages, you should use the pattern matching make targets. These
+targets follow the pattern `<action>-<package>`, e.g. `make install-bash`.
+
+### Testing
+
+Running the `make test` target will run `shellcheck` against all scripts within all dotfile packages.
+
+### Cleanup
+
+Running `make uninstall` should remove all dotfile package symlinks on your machine.
+
+## Contributing
+
+If you're looking to add a dotfile package, there's a few things you should know.
+
+* Files should be located in a subdirectory of `dotfiles`.
+* Files within these subdirectories will be symlinked into the home directory.
+* Nested directories are supported (see `zsh` for an example).
+
+## Related
+
+* [Dockerfiles](https://github.com/ahawker/dockerfiles)
+
+## License
+
+[Apache 2.0](LICENSE)
