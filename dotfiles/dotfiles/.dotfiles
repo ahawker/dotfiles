@@ -9,3 +9,4 @@
 . "$HOME/.dockerfiles/.dockerfiles"
 
 for f in $(find $HOME/.exports/ -type f); do . $f; done
+for f in $(find $HOME/.evals/ -type f); do . $f; done
