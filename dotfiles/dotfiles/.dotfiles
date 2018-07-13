@@ -7,3 +7,5 @@
 
 . "$HOME/.aliases"
 . "$HOME/.dockerfiles/.dockerfiles"
+
+for f in $(find $HOME/.exports/ -type f); do . $f; done
