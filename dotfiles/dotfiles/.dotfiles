@@ -5,9 +5,9 @@
 # The goal of this file is to be central "entrypoint" for all dotfiles
 # repository context instead of duplicating it across .rc files, e.g. .bashrc/.zshrc.
 
-for f in $(find $HOME/.aliases/ -type f); do . $f; done
-for f in $(find $HOME/.exports/ -type f); do . $f; done
-for f in $(find $HOME/.evals/ -type f); do . $f; done
+for f in $(find $HOME/.aliases/ -type f 2> /dev/null); do . $f; done
+for f in $(find $HOME/.exports/ -type f 2> /dev/null); do . $f; done
+for f in $(find $HOME/.evals/ -type f 2> /dev/null); do . $f; done
 
 . "$HOME/.dockerfiles/.dockerfiles"
 . "$HOME/.iterm2"
