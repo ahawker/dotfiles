@@ -1,0 +1,12 @@
+sudo: required
+language: bash
+notifications:
+  email: true
+services:
+- docker
+install:
+- make
+before_script:
+- sudo apt-get install -y stow shellcheck
+script:
+- make test
