@@ -5,4 +5,5 @@
 # The goal of this file is to be central "entrypoint" for all dotfiles
 # repository context instead of duplicating it across .rc files, e.g. .bashrc/.zshrc.
 
+. "$HOME/.aliases"
 . "$HOME/.dockerfiles/.dockerfiles"
