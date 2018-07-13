@@ -154,35 +154,3 @@ terraform() {
 _shlex() {
 	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=($@); fi
 }
-
-# Aliases to avoid specifying a specific version, normally the latest available.
-alias jre="jre8"
-alias mvn="maven"
-alias mvn3="maven"
-alias maven3="maven"
-alias nodejs="node"
-alias python="python3"
-alias py3="python3"
-alias ruby="ruby24"
-alias rb24="ruby24"
-
-# Aliases to fallback to the default Dockerfile CMD which should be the $USER shell.
-alias alpine-shell="alpine"
-alias cookiecutter-shell="cookiecutter DEFAULT_CMD"
-alias mvn-shell="maven DEFAULT_CMD"
-alias mvn3-shell="maven DEFAULT_CMD"
-alias maven-shell="maven DEFAULT_CMD"
-alias maven3-shell="maven DEFAULT_CMD"
-alias node-shell="node DEFAULT_CMD"
-alias nodejs-shell="node DEFAULT_CMD"
-alias npm-shell="npm DEFAULT_CMD"
-alias py3-shell="python3 DEFAULT_CMD"
-alias python-shell="python3 DEFAULT_CMD"
-alias python3-shell="python3 DEFAULT_CMD"
-alias rb24-shell="ruby24 DEFAULT_CMD"
-alias ruby-shell="ruby24 DEFAULT_CMD"
-alias ruby24-shell="ruby24 DEFAULT_CMD"
-alias scala-shell="scala DEFAULT_CMD"
-alias sbt-shell="sbt DEFAULT_CMD"
-alias jre-shell="jre DEFAULT_CMD"
-alias terraform-shell="terraform DEFAULT_CMD"
