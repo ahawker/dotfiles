@@ -4,9 +4,10 @@
 #
 # See: https://github.com/ahawker/dockerfiles
 
+DOCKERFILES_HOME="$HOME/.dockerfiles"
 DOCKERFILES_REPO=ahawker
 DOCKERFILES_ARGS=""
-DOCKERFILES_ENV_FILE="$HOME/.dockerfiles.env"
+DOCKERFILES_ENV_FILE="$DOCKERFILES_HOME/.dockerfiles.env"
 DOCKERFILES_WORKDIR="/app"
 
 alpine() {
