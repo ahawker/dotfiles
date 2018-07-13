@@ -18,6 +18,18 @@ This repository is under active development although the core functionality is i
 
 The `Makefile` leverages [GNU Stow](https://www.gnu.org/software/stow/) to create symlinks from each subdirectory, "dotfile package", into your shell home directory.
 
+As part of the symlinking process, a shell-specific `.rc` file should also be symlinked, e.g. `.zshrc`. Each of these shell-specific `.rc` file should contain a line that sources the dotfiles repository. This commonly looks like:
+
+```bash
+source "$HOME/.dotfiles"
+```
+
+The `$HOME/.dotfiles` file is the `entrypoint` into the dotfiles repository and is responsible for loading/sourcing all necessary files from within. This file exists as a separation between shell-specific `.rc` files and all the content loaded by the `dotfiles` repository.
+
+## Add to Existing Shell Environment
+
+Installing these into an existing shell environment is not currently supported. Installation will fail if an existing shell `.rc` file already exists in its place, e.g. `.bashrc`.
+
 ## Usage
 
 All functionality of this repository is exposed through the `Makefile`. You can see the available commands by running `make` or `make help`.
