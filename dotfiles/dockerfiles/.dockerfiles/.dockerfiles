@@ -163,6 +163,18 @@ terraform() {
 		$DOCKERFILES_REPO/terraform $DOCKERFILES_ARGS
 }
 
+travis() {
+	_shlex travis "$@"
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKERFILES_REPO/travis $DOCKERFILES_ARGS
+}
+
 _shlex() {
 	# shellcheck disable=2039
 	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=("$@"); fi
