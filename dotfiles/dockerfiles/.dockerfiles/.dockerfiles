@@ -4,11 +4,11 @@
 #
 # See: https://github.com/ahawker/dockerfiles
 
-DOCKERFILES_HOME="$HOME/.dockerfiles"
-DOCKERFILES_REPO=ahawker
-DOCKERFILES_ARGS=""
+export DOCKERFILES_HOME="$HOME/.dockerfiles"
+export DOCKERFILES_REPO=ahawker
+export DOCKERFILES_WORKDIR="/app"
 DOCKERFILES_ENV_FILE="$DOCKERFILES_HOME/.dockerfiles.env"
-DOCKERFILES_WORKDIR="/app"
+DOCKERFILES_ARGS=""
 
 alpine() {
 	docker run \
