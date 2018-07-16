@@ -9,6 +9,10 @@ INTERACTIVE_SHELL := $(shell [ -t 0 ] && echo 1 || echo 0)
 
 STOW_DIR := dotfiles
 STOW_TARGET := $(HOME)
+STOW_PACKAGES := *
+ifdef IGNORE_SHELL_RC_FILES
+	STOW_PACKAGES := $(shell ls $(STOW_DIR) | grep -vE "(bash|zsh)")
+endif
 
 SHELLCHECK_REPO := ahawker
 SHELLCHECK_IMAGE := $(SHELLCHECK_REPO)/shellcheck
@@ -23,7 +27,7 @@ endif
 .PHONY: install
 install: stow | requirements  ## Install all dotfile packages.
 	$(call TRACE, Running '$@' for all packages)
-	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -S *)
+	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -S $(STOW_PACKAGES))
 	$(call TRACE, Completed '$@' for all packages)
 
 .PHONY: install-%
@@ -35,7 +39,7 @@ install-%: stow | requirements  ## Install individual dotfile package by name, e
 .PHONY: reinstall
 reinstall: stow | requirements  ## Reinstall all dotfile packages.
 	$(call TRACE, Running '$@' for all packages)
-	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -R *)
+	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -R $(STOW_PACKAGES))
 	$(call TRACE, Completed '$@' for all packages)
 
 .PHONY: reinstall-%
@@ -47,7 +51,7 @@ reinstall-%: stow | requirements  ## Reinstall individual dotfile package by nam
 .PHONY: uninstall
 uninstall: stow | requirements  ## Uninstall all dotfiles packages.
 	$(call TRACE, Running '$@' for all packages)
-	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -D *)
+	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -D $(STOW_PACKAGES))
 	$(call TRACE, Completed '$@' for all packages)
 
 .PHONY: uninstall-%
@@ -73,7 +77,8 @@ stow: | requirements
 .PHONY: requirements
 requirements: requires-command-stow \
 	requires-STOW_DIR \
-	requires-STOW_TARGET
+	requires-STOW_TARGET \
+	requires-STOW_PACKAGES
 
 .PHONY: test-requirements
 test-requirements: requires-command-docker \

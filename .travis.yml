@@ -9,4 +9,4 @@ install:
 before_script:
 - sudo apt-get install -y stow shellcheck
 script:
-- make test
+- IGNORE_SHELL_RC_FILES=1 make test
