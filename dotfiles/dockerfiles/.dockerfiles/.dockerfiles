@@ -129,6 +129,18 @@ sbt() {
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
 
+shellcheck() {
+	_shlex shellcheck $@
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file $DOCKERFILES_ENV_FILE \
+		--volume $(pwd):$DOCKERFILES_WORKDIR \
+		--workdir $DOCKERFILES_WORKDIR \
+		$DOCKERFILES_REPO/shellcheck $DOCKERFILES_ARGS
+}
+
 terraform() {
 	_shlex terraform $@
 	docker run \
