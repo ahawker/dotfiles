@@ -5,11 +5,21 @@ ifneq ($(strip $(wildcard $(LOGGERFILE))),)
 	include $(LOGGERFILE)
 endif
 
+INTERACTIVE_SHELL := $(shell [ -t 0 ] && echo 1 || echo 0)
+
 STOW_DIR := dotfiles
 STOW_PATH := $(shell command -v stow 2> /dev/null)
 STOW_TARGET := $(HOME)
 
-SHELLCHECK_PATH := $(shell command -v shellcheck 2> /dev/null)
+SHELLCHECK_REPO := ahawker
+SHELLCHECK_IMAGE := $(SHELLCHECK_REPO)/shellcheck
+SHELLCHECK_VOLUME := $(shell pwd)
+SHELLCHECK_WORKDIR := /app
+
+SHELLCHECK_DOCKER_FLAGS := --interactive --rm
+ifeq ($(INTERACTIVE_SHELL), 1)
+	SHELLCHECK_DOCKER_FLAGS += --tty
+endif
 
 .PHONY: install
 install: stow | requirements  ## Install all dotfile packages.
@@ -50,7 +60,11 @@ uninstall-%: stow | requirements  ## Uninstall individual dotfile package by nam
 .PHONY: test
 test: stow reinstall | test-requirements  ## Run 'shellcheck' tests against dotfile packages.
 	$(call TRACE, Running '$@' for all packages)
-	@find $(STOW_DIR) -type f ! -path '*.git*' | xargs -I % file % | grep script | cut -d ' ' -f 1 | sed 's/.$$//' | xargs shellcheck
+	@docker run $(SHELLCHECK_DOCKER_FLAGS) \
+		--volume $(SHELLCHECK_VOLUME):$(SHELLCHECK_WORKDIR) \
+		--workdir $(SHELLCHECK_WORKDIR) \
+		$(SHELLCHECK_IMAGE) \
+		/usr/bin/env sh -c 'find $(STOW_DIR) -type f ! -path '*.git*' | xargs -I % file % | grep script | cut -d " " -f 1 | sed "s/.$$//" | xargs shellcheck'
 	$(call TRACE, Completed '$@' for all packages)
 
 .PHONY: stow
@@ -61,7 +75,11 @@ stow: | requirements
 requirements: requires-STOW_PATH requires-STOW_DIR requires-STOW_TARGET
 
 .PHONY: test-requirements
-test-requirements: requires-SHELLCHECK_PATH
+test-requirements: requires-SHELLCHECK_REPO \
+	requires-SHELLCHECK_IMAGE \
+	requires-SHELLCHECK_VOLUME \
+	requires-SHELLCHECK_WORKDIR \
+	requires-SHELLCHECK_DOCKER_FLAGS
 
 .PHONY: requires-%
 requires-%:

@@ -12,7 +12,7 @@ This repository is under active development although the core functionality is i
 
 * `$HOME` environment variable is set.
 * `command` executable is available.
-* `shellcheck` executable is available in path. **Test Only**
+* `docker` executable is available. **Test Only**
 
 ## How does it work?
 
