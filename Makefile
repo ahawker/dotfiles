@@ -63,7 +63,7 @@ test: stow reinstall | test-requirements  ## Run 'shellcheck' tests against dotf
 		--volume $(SHELLCHECK_VOLUME):$(SHELLCHECK_WORKDIR) \
 		--workdir $(SHELLCHECK_WORKDIR) \
 		$(SHELLCHECK_IMAGE) \
-		/usr/bin/env sh -c 'find $(STOW_DIR) -type f ! -path '*.git*' | xargs -I % file % | grep script | cut -d " " -f 1 | sed "s/.$$//" | xargs shellcheck'
+		/usr/bin/env sh -c 'find $(STOW_DIR) -type f ! -path "*.git*" | xargs -I % file % | grep script | cut -d " " -f 1 | sed "s/.$$//" | xargs shellcheck'
 	$(call TRACE, Completed '$@' for all packages)
 
 .PHONY: stow
