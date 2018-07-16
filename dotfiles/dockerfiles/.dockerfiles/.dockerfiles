@@ -15,154 +15,155 @@ alpine() {
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/alpine
 }
 
 cookiecutter() {
-	_shlex cookiecutter $@
+	_shlex cookiecutter "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
 }
 
 jre8() {
-	_shlex java $@
+	_shlex java "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
 }
 
 maven() {
-	_shlex mvn $@
+	_shlex mvn "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):/$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
 }
 
 node() {
-	_shlex node $@
+	_shlex node "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):/$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
 }
 
 npm() {
-	_shlex npm $@
+	_shlex npm "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):/$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
 }
 
 python3() {
-	_shlex python3 $@
+	_shlex python3 "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
 }
 
 ruby24() {
-	_shlex irb $@
+	_shlex irb "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
 }
 
 scala() {
-	_shlex scala $@
+	_shlex scala "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
 
 sbt() {
-	_shlex sbt $@
+	_shlex sbt "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
 }
 
 shellcheck() {
-	_shlex shellcheck $@
+	_shlex shellcheck "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKERFILES_REPO/shellcheck $DOCKERFILES_ARGS
 }
 
 terraform() {
-	_shlex terraform $@
+	_shlex terraform "$@"
 	docker run \
 		--interactive \
 		--tty \
 		--rm \
-		--volume $HOME/.aws:$HOME/.aws:ro \
-		--volume $(pwd):$DOCKERFILES_WORKDIR \
-		--workdir $DOCKERFILES_WORKDIR \
-		--env-file $DOCKERFILES_ENV_FILE \
-		--env AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID \
-		--env AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY \
-		--env AWS_SESSION_TOKEN:$AWS_SESSION_TOKEN \
-		--env AWS_DEFAULT_REGION:$AWS_DEFAULT_REGION \
-		--env AWS_DEFAULT_OUTPUT:$AWS_DEFAULT_OUTPUT \
-		--env AWS_PROFILE:$AWS_PROFILE \
-		--env AWS_CA_BUNDLE:$AWS_CA_BUNDLE \
-		--env AWS_SHARED_CREDENTIALS_FILE:$AWS_SHARED_CREDENTIALS_FILE \
-		--env AWS_CONFIG_FILE:$AWS_CONFIG_FILE \
+		--volume "$HOME/.aws:$HOME/.aws:ro" \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		--env "AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID" \
+		--env "AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY" \
+		--env "AWS_SESSION_TOKEN:$AWS_SESSION_TOKEN" \
+		--env "AWS_DEFAULT_REGION:$AWS_DEFAULT_REGION" \
+		--env "AWS_DEFAULT_OUTPUT:$AWS_DEFAULT_OUTPUT" \
+		--env "AWS_PROFILE:$AWS_PROFILE" \
+		--env "AWS_CA_BUNDLE:$AWS_CA_BUNDLE" \
+		--env "AWS_SHARED_CREDENTIALS_FILE:$AWS_SHARED_CREDENTIALS_FILE" \
+		--env "AWS_CONFIG_FILE:$AWS_CONFIG_FILE" \
 		$DOCKERFILES_REPO/terraform $DOCKERFILES_ARGS
 }
 
 _shlex() {
-	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=($@); fi
+	# shellcheck disable=2039
+	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=("$@"); fi
 }
