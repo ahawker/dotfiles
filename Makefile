@@ -8,7 +8,6 @@ endif
 INTERACTIVE_SHELL := $(shell [ -t 0 ] && echo 1 || echo 0)
 
 STOW_DIR := dotfiles
-STOW_PATH := $(shell command -v stow 2> /dev/null)
 STOW_TARGET := $(HOME)
 
 SHELLCHECK_REPO := ahawker
@@ -72,14 +71,21 @@ stow: | requirements
 	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -R stow)
 
 .PHONY: requirements
-requirements: requires-STOW_PATH requires-STOW_DIR requires-STOW_TARGET
+requirements: requires-command-stow \
+	requires-STOW_DIR \
+	requires-STOW_TARGET
 
 .PHONY: test-requirements
-test-requirements: requires-SHELLCHECK_REPO \
+test-requirements: requires-command-docker \
+	requires-SHELLCHECK_REPO \
 	requires-SHELLCHECK_IMAGE \
 	requires-SHELLCHECK_VOLUME \
 	requires-SHELLCHECK_WORKDIR \
 	requires-SHELLCHECK_DOCKER_FLAGS
+
+.PHONY: requires-command-%
+requires-command-%:
+	@if [ ! $$(command -v $* 2> /dev/null) ] ; then echo 'Required command "$*" not found' && exit 1; fi
 
 .PHONY: requires-%
 requires-%:
