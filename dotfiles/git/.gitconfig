@@ -1,0 +1,22 @@
+[alias]
+        pr = "!hub pull-request"
+[apply]
+	whitespace = fix
+[color]
+        ui = auto
+[commit]
+	gpgsign = true
+[core]
+	attributesfile = ~/.gitattributes
+        excludesfile = ~/.gitignore
+	trustctime = false
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+[diff]
+        renames = copies
+[help]
+	autocorrect = 1
+[push]
+	default = simple
+[user]
+	name = Andrew Hawker
+	email = andrew.r.hawker@gmail.com
