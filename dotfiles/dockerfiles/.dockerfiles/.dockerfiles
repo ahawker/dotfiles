@@ -4,13 +4,11 @@
 #
 # See: https://github.com/ahawker/dockerfiles
 
-export DOCKERFILES_HOME="$HOME/.dockerfiles"
-export DOCKERFILES_REPO=ahawker
-export DOCKERFILES_WORKDIR="/app"
-DOCKERFILES_ENV_FILE="$DOCKERFILES_HOME/.dockerfiles.env"
-DOCKERFILES_ARGS=""
+DOCKER_RUN_IMAGE=""
+DOCKER_RUN_ARGS=""
 
 alpine() {
+	_set_docker_run_image alpine "$DOCKERFILES_ALPINE_VERSION"
 	docker run \
 		--interactive \
 		--tty \
@@ -18,11 +16,12 @@ alpine() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/alpine
+		$DOCKER_RUN_IMAGE
 }
 
 cookiecutter() {
-	_shlex cookiecutter "$@"
+	_set_docker_run_image cookiecutter "$DOCKERFILES_COOKIECUTTER_VERSION"
+	_set_docker_run_args cookiecutter "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -30,11 +29,38 @@ cookiecutter() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/cookiecutter $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+go() {
+	_set_docker_run_image golang "$DOCKERFILES_GOLANG_VERSION"
+	_set_docker_run_args go "$@"
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+gofmt() {
+	_set_docker_run_image golang "$DOCKERFILES_GOLANG_VERSION"
+	_set_docker_run_args gofmt "$@"
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 jre8() {
-	_shlex java "$@"
+	_set_docker_run_image jre8 "$DOCKERFILES_JRE8_VERSION"
+	_set_docker_run_args java "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -42,11 +68,12 @@ jre8() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/jre8 $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 maven() {
-	_shlex mvn "$@"
+	_set_docker_run_image maven "$DOCKERFILES_MAVEN_VERSION"
+	_set_docker_run_args mvn "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -54,11 +81,12 @@ maven() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/maven $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 node() {
-	_shlex node "$@"
+	_set_docker_run_image nodejs "$DOCKERFILES_NODEJS_VERSION"
+	_set_docker_run_args node "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -66,11 +94,12 @@ node() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 npm() {
-	_shlex npm "$@"
+	_set_docker_run_image nodejs "$DOCKERFILES_NODEJS_VERSION"
+	_set_docker_run_args npm "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -78,11 +107,25 @@ npm() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/nodejs $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+python2() {
+	_set_docker_run_image python2 "$DOCKERFILES_PYTHON2_VERSION"
+	_set_docker_run_args python "$@"
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 python3() {
-	_shlex python3 "$@"
+	_set_docker_run_image python3 "$DOCKERFILES_PYTHON3_VERSION"
+	_set_docker_run_args python3 "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -90,11 +133,12 @@ python3() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/python3 $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 ruby24() {
-	_shlex irb "$@"
+	_set_docker_run_image ruby2.4 "$DOCKERFILES_RUBY_VERSION"
+	_set_docker_run_args irb "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -102,11 +146,12 @@ ruby24() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/ruby2.4 $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 scala() {
-	_shlex scala "$@"
+	_set_docker_run_image sbt "$DOCKERFILES_SCALA_VERSION"
+	_set_docker_run_args scala "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -114,11 +159,12 @@ scala() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 sbt() {
-	_shlex sbt "$@"
+	_set_docker_run_image sbt "$DOCKERFILES_SBT_VERSION"
+	_set_docker_run_args sbt "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -126,11 +172,12 @@ sbt() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/sbt $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 shellcheck() {
-	_shlex shellcheck "$@"
+	_set_docker_run_image shellcheck "$DOCKERFILES_SHELLCHECK_VERSION"
+	_set_docker_run_args shellcheck "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -138,11 +185,12 @@ shellcheck() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/shellcheck $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 terraform() {
-	_shlex terraform "$@"
+	_set_docker_run_image terraform "$DOCKERFILES_TERRAFORM_VERSION"
+	_set_docker_run_args terraform "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -160,11 +208,12 @@ terraform() {
 		--env "AWS_CA_BUNDLE:$AWS_CA_BUNDLE" \
 		--env "AWS_SHARED_CREDENTIALS_FILE:$AWS_SHARED_CREDENTIALS_FILE" \
 		--env "AWS_CONFIG_FILE:$AWS_CONFIG_FILE" \
-		$DOCKERFILES_REPO/terraform $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
 travis() {
-	_shlex travis "$@"
+	_set_docker_run_image travis "$DOCKERFILES_TRAVIS_VERSION"
+	_set_docker_run_args travis "$@"
 	docker run \
 		--interactive \
 		--tty \
@@ -172,10 +221,18 @@ travis() {
 		--env-file "$DOCKERFILES_ENV_FILE" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
-		$DOCKERFILES_REPO/travis $DOCKERFILES_ARGS
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_shlex() {
+_set_docker_run_args() {
 	# shellcheck disable=2039
-	if [ "$2" = "DEFAULT_CMD" ]; then DOCKERFILES_ARGS=(); else DOCKERFILES_ARGS=("$@"); fi
+	if [ "$2" = "DEFAULT_CMD" ]; then DOCKER_RUN_ARGS=(); else DOCKER_RUN_ARGS=("$@"); fi
+}
+
+_set_docker_run_image() {
+	repo="${DOCKERFILES_REPO?:Unable to determine dockerfiles repo from environment}"
+	image="${1?:Unable to determine dockerfiles image from environment}"
+	version="${2?:Unable to determine dockerfiles image version from environment}"
+	tag="${DOCKERFILES_TAG:-${DOCKERFILES_BUILD_ID:-${DOCKERFILES_BUILD_TS:-${DOCKERFILES_COMMIT:-${version?:Unable to determine docker tag from environment}}}}}"
+	DOCKER_RUN_IMAGE="$repo/$image$version:$tag"
 }
