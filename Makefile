@@ -14,6 +14,10 @@ ifdef IGNORE_SHELL_RC_FILES
 	STOW_PACKAGES := $(shell ls $(STOW_DIR) | grep -vE "(bash|zsh)")
 endif
 
+ifdef EXCLUDE
+	STOW_PACKAGES := $(shell ls $(STOW_DIR) | grep -vE "$(EXCLUDE)")
+endif
+
 SHELLCHECK_REPO := ahawker
 SHELLCHECK_IMAGE := $(SHELLCHECK_REPO)/shellcheck
 SHELLCHECK_VOLUME := $(shell pwd)
