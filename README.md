@@ -12,6 +12,7 @@ This repository is under active development although the core functionality is i
 
 * `$HOME` environment variable is set.
 * `command` executable is available.
+* `stow` executable is available.
 * `docker` executable is available. **Test Only**
 
 ## Usage
