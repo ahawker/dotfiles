@@ -106,6 +106,19 @@ If you're looking to add a dotfile package, there's a few things you should know
 * Files within these subdirectories will be symlinked into the home directory.
 * Nested directories are supported (see `zsh` for an example).
 
+## Customizing
+
+If you wish to customize the dotfiles to your own liking, I recommend forking the repository and optionally submitting pull-requests upstream to me if it's a fix or helpful addition I might enjoy.
+
+```bash
+$ git remote add upstream git@github.com:ahawker/dotfiles.git
+$ git fetch upstream
+$ git rebase upstream/master
+$ git push origin master
+```
+
+In the future, I'll be working on an easier way to customize values from within these dotfiles that don't require a repository fork and/or significant local changes.
+
 ## Related
 
 * [Dockerfiles](https://github.com/ahawker/dockerfiles)
