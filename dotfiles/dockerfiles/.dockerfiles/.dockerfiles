@@ -19,6 +19,29 @@ alpine() {
 		$DOCKER_RUN_IMAGE
 }
 
+awscli() {
+	_set_docker_run_image awscli "$DOCKERFILES_AWSCLI_VERSION"
+	_set_docker_run_args aws "$@"
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--volume "$HOME/.aws:$HOME/.aws:ro" \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		--env "AWS_ACCESS_KEY_ID:$AWS_ACCESS_KEY_ID" \
+		--env "AWS_SECRET_ACCESS_KEY:$AWS_SECRET_ACCESS_KEY" \
+		--env "AWS_SESSION_TOKEN:$AWS_SESSION_TOKEN" \
+		--env "AWS_DEFAULT_REGION:$AWS_DEFAULT_REGION" \
+		--env "AWS_DEFAULT_OUTPUT:$AWS_DEFAULT_OUTPUT" \
+		--env "AWS_PROFILE:$AWS_PROFILE" \
+		--env "AWS_CA_BUNDLE:$AWS_CA_BUNDLE" \
+		--env "AWS_SHARED_CREDENTIALS_FILE:$AWS_SHARED_CREDENTIALS_FILE" \
+		--env "AWS_CONFIG_FILE:$AWS_CONFIG_FILE" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
 cookiecutter() {
 	_set_docker_run_image cookiecutter "$DOCKERFILES_COOKIECUTTER_VERSION"
 	_set_docker_run_args cookiecutter "$@"
