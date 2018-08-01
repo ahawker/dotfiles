@@ -13,7 +13,7 @@ declare -a VERSIONS=($DOCKERFILES_KUBECTL_1_11_1_VERSION)
 export DOCKERFILES_KUBECTL_VERSIONS="$VERSIONS"
 
 kubectl() {
-	_set_docker_run_image kubectl "${IMAGE_VERSION:-$DOCKERFILES_KUBECTL_VERSIONS}" "${IMAGE_TAG:-""}"
+	_set_docker_run_image kubectl "${IMAGE_VERSION:-$DOCKERFILES_KUBECTL_LATEST_VERSION}" "${IMAGE_TAG:-""}"
 	_set_docker_run_args kubectl "$@"
 
 	docker run \
@@ -21,7 +21,7 @@ kubectl() {
 		--tty \
 		--rm \
 		--env-file "$DOCKERFILES_ENV_FILE" \
-		--volume "$HOME/.kube:$HOME/.kube" \
+		--volume "$HOME/.kube:$DOCKERFILES_USER_HOME/.kube" \
 		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
 		--workdir "$DOCKERFILES_WORKDIR" \
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
