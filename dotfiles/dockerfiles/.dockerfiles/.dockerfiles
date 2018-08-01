@@ -249,7 +249,7 @@ travis() {
 
 _set_docker_run_args() {
 	# shellcheck disable=2039
-	if [ "$2" = "DEFAULT_CMD" ]; then DOCKER_RUN_ARGS=(); else DOCKER_RUN_ARGS=("$@"); fi
+	if [ "$2" = "$DOCKERFILES_DEFAULT_CMD" ]; then DOCKER_RUN_ARGS=(); else DOCKER_RUN_ARGS=("$@"); fi
 }
 
 _set_docker_run_image() {
