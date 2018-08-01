@@ -10,6 +10,6 @@ for f in $(find "$HOME/.aliases/" -type f 2> /dev/null); do . "$f"; done
 for f in $(find "$HOME/.exports/" -type f 2> /dev/null); do . "$f"; done
 for f in $(find "$HOME/.evals/" -type f 2> /dev/null); do . "$f"; done
 
-. "$HOME/.dockerfiles/.dockerfiles"
 . "$HOME/.dockerfiles/.dockerfiles.vars"
+. "$HOME/.dockerfiles/.dockerfiles"
 . "$HOME/.iterm2"
