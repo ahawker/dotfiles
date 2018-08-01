@@ -26,7 +26,7 @@ cookiecutter() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image cookiecutter cookiecutter "$VERSIONS"
+_set_aliases_for_image cookiecutter "$VERSIONS"
 
 unset DOCKERFILES_COOKIECUTTER_1_6_0_VERSION
 unset DOCKERFILES_COOKIECUTTER_1_6_VERSION

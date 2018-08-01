@@ -21,9 +21,8 @@ _set_docker_run_image() {
 }
 
 _set_aliases_for_image() {
-	IMAGE="$1"
-	EXECUTABLE="$2"
-	VERSIONS=("${@:3}")
+	EXECUTABLE="$1"
+	VERSIONS=("${@:2}")
 
 	# Default Command (shell)
 	alias "$EXECUTABLE-shell"="$EXECUTABLE $DOCKERFILES_DEFAULT_CMD"
@@ -68,7 +67,6 @@ _set_aliases_for_image() {
 	done
 
 	unset VERSION
-	unset IMAGE
 	unset EXECUTABLE
 	unset VERSIONS
 }

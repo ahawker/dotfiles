@@ -36,7 +36,7 @@ terraform() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image terraform terraform "$VERSIONS[@]"
+_set_aliases_for_image terraform "$VERSIONS[@]"
 
 unset DOCKERFILES_TERRAFORM_0_11_7_VERSION
 unset DOCKERFILES_TERRAFORM_0_11_VERSION

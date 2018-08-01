@@ -30,7 +30,7 @@ ruby() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image ruby ruby "$VERSIONS[@]"
+_set_aliases_for_image ruby "$VERSIONS[@]"
 
 unset DOCKERFILES_RUBY_2_2_9_VERSION
 unset DOCKERFILES_RUBY_2_2_VERSION

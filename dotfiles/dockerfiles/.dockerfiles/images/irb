@@ -30,7 +30,7 @@ irb() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image ruby irb "$VERSIONS[@]"
+_set_aliases_for_image irb "$VERSIONS[@]"
 
 unset DOCKERFILES_IRB_RUBY_2_2_9_VERSION
 unset DOCKERFILES_IRB_RUBY_2_2_VERSION

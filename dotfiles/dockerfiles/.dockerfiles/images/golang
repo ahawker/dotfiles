@@ -26,7 +26,7 @@ go() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image golang go "$VERSIONS[@]"
+_set_aliases_for_image go "$VERSIONS[@]"
 
 
 unset DOCKERFILES_GOLANG_1_10_3_VERSION

@@ -26,7 +26,7 @@ mvn() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image maven mvn "$VERSIONS[@]"
+_set_aliases_for_image mvn "$VERSIONS[@]"
 
 unset DOCKERFILES_MAVEN_3_5_4_VERSION
 unset DOCKERFILES_MAVEN_3_5_VERSION

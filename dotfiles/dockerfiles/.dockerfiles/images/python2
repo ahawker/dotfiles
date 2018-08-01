@@ -26,7 +26,7 @@ python2() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image python python "$VERSIONS[@]"
+_set_aliases_for_image python "$VERSIONS[@]"
 
 unset DOCKERFILES_PYTHON_2_7_15_VERSION
 unset DOCKERFILES_PYTHON_2_7_VERSION

@@ -26,7 +26,7 @@ travis() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image travis travis "$VERSIONS[@]"
+_set_aliases_for_image travis "$VERSIONS[@]"
 
 unset DOCKERFILES_TRAVIS_1_8_8_VERSION
 unset DOCKERFILES_TRAVIS_1_8_VERSION

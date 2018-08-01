@@ -26,7 +26,7 @@ scala() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image scala scala "$VERSIONS[@]"
+_set_aliases_for_image scala "$VERSIONS[@]"
 
 unset DOCKERFILES_SCALA_2_12_6_VERSION
 unset DOCKERFILES_SCALA_2_12_VERSION

@@ -26,7 +26,7 @@ sbt() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image sbt sbt "$VERSIONS[@]"
+_set_aliases_for_image sbt "$VERSIONS[@]"
 
 unset DOCKERFILES_SBT_1_1_6_VERSION
 unset DOCKERFILES_SBT_1_1_VERSION

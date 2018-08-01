@@ -36,7 +36,7 @@ aws() {
 		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
 }
 
-_set_aliases_for_image awscli aws "$VERSIONS"
+_set_aliases_for_image aws "$VERSIONS"
 
 unset DOCKERFILES_AWSCLI_1_15_66_VERSION
 unset DOCKERFILES_AWSCLI_1_15_VERSION

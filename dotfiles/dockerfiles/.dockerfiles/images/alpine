@@ -26,7 +26,7 @@ alpine() {
 		$DOCKER_RUN_IMAGE
 }
 
-_set_aliases_for_image alpine alpine "${VERSIONS[@]}"
+_set_aliases_for_image alpine "${VERSIONS[@]}"
 
 unset DOCKERFILES_ALPINE_3_3_VERSION
 unset DOCKERFILES_ALPINE_3_7_VERSION
