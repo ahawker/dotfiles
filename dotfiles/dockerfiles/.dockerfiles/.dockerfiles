@@ -256,6 +256,6 @@ _set_docker_run_image() {
 	repo="${DOCKERFILES_REPO?:Unable to determine dockerfiles repo from environment}"
 	image="${1?:Unable to determine dockerfiles image from environment}"
 	version="${2?:Unable to determine dockerfiles image version from environment}"
-	tag="${DOCKERFILES_TAG:-${DOCKERFILES_BUILD_ID:-${DOCKERFILES_BUILD_TS:-${DOCKERFILES_COMMIT:-${version?:Unable to determine docker tag from environment}}}}}"
+	tag="${3:-${DOCKERFILES_TAG:-${DOCKERFILES_BUILD_ID:-${DOCKERFILES_BUILD_TS:-${DOCKERFILES_COMMIT:-${version?:Unable to determine dockerfiles tag from environment}}}}}}"
 	DOCKER_RUN_IMAGE="$repo/$image-$version:$tag"
 }
