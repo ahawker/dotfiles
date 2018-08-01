@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "hub" dockerfiles image.
+
+# Versions
+DOCKERFILES_HUB_2_5_0_VERSION="2.5.0"
+DOCKERFILES_HUB_2_5_VERSION="$DOCKERFILES_HUB_2_5_0_VERSION"
+DOCKERFILES_HUB_2_VERSION="$DOCKERFILES_HUB_2_5_VERSION"
+export DOCKERFILES_HUB_LATEST_VERSION="$DOCKERFILES_HUB_2_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_HUB_2_5_VERSION)
+export DOCKERFILES_HUB_VERSIONS="$VERSIONS"
+
+hub2() {
+	_set_docker_run_image hub "${IMAGE_VERSION:-$DOCKERFILES_HUB_LATEST_VERSION}" "${IMAGE_TAG:-""}"
+	_set_docker_run_args hub "$@"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+_set_aliases_for_image hub hub "$VERSIONS[@]"
+
+unset DOCKERFILES_HUB_2_5_0_VERSION
+unset DOCKERFILES_HUB_2_5_VERSION
+unset DOCKERFILES_HUB_2_VERSION
+unset VERSIONS

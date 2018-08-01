@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "alpine" dockerfiles image.
+
+# Versions
+DOCKERFILES_ALPINE_3_3_VERSION="3.3"
+DOCKERFILES_ALPINE_3_7_VERSION="3.7"
+DOCKERFILES_ALPINE_3_8_VERSION="3.8"
+DOCKERFILES_ALPINE_3_VERSION="$DOCKERFILES_ALPINE_3_8_VERSION"
+export DOCKERFILES_ALPINE_LATEST_VERSION="$DOCKERFILES_ALPINE_3_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_ALPINE_3_3_VERSION $DOCKERFILES_ALPINE_3_7_VERSION $DOCKERFILES_ALPINE_3_8_VERSION)
+export DOCKERFILES_ALPINE_VERSIONS="$VERSIONS"
+
+alpine() {
+	_set_docker_run_image alpine "${IMAGE_VERSION:-$DOCKERFILES_ALPINE_LATEST_VERSION}" "${IMAGE_TAG:-""}"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE
+}
+
+_set_aliases_for_image alpine alpine "${VERSIONS[@]}"
+
+unset DOCKERFILES_ALPINE_3_3_VERSION
+unset DOCKERFILES_ALPINE_3_7_VERSION
+unset DOCKERFILES_ALPINE_3_8_VERSION
+unset DOCKERFILES_ALPINE_3_VERSION
+unset VERSIONS

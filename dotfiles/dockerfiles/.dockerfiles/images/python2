@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "python2" dockerfiles image.
+
+# Versions
+DOCKERFILES_PYTHON_2_7_15_VERSION="2.7.15"
+DOCKERFILES_PYTHON_2_7_VERSION="$DOCKERFILES_PYTHON_2_7_15_VERSION"
+DOCKERFILES_PYTHON_2_VERSION="$DOCKERFILES_PYTHON_2_7_VERSION"
+export DOCKERFILES_PYTHON_2_LATEST_VERSION="$DOCKERFILES_PYTHON_2_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_PYTHON_2_7_15_VERSION)
+export DOCKERFILES_PYTHON_2_VERSIONS="$VERSIONS"
+
+python2() {
+	_set_docker_run_image python "${IMAGE_VERSION:-$DOCKERFILES_PYTHON_2_LATEST_VERSION}" "${IMAGE_TAG:-""}"
+	_set_docker_run_args python "$@"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+_set_aliases_for_image python python "$VERSIONS[@]"
+
+unset DOCKERFILES_PYTHON_2_7_15_VERSION
+unset DOCKERFILES_PYTHON_2_7_VERSION
+unset DOCKERFILES_PYTHON_2_VERSION
+unset VERSIONS

@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "jre" dockerfiles image.
+
+# Versions
+DOCKERFILES_JRE_8_171_11_VERSION="8.171.11"
+DOCKERFILES_JRE_8_171_VERSION="$DOCKERFILES_JRE_8_171_11_VERSION"
+DOCKERFILES_JRE_8_VERSION="$DOCKERFILES_JRE_8_171_VERSION"
+export DOCKERFILES_JRE_LATEST_VERSION="$DOCKERFILES_JRE_8_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_JRE_8_171_11_VERSION)
+export DOCKERFILES_JRE_VERSIONS="$VERSIONS"
+
+java() {
+	_set_docker_run_image jre "${IMAGE_VERSION:-$DOCKERFILES_JRE_LATEST_VERSION}" "${IMAGE_TAG:-""}"
+	_set_docker_run_args java "$@"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+_set_aliases_for_image jre java "$VERSIONS[@]"
+
+unset DOCKERFILES_JRE_8_171_11_VERSION
+unset DOCKERFILES_JRE_8_171_VERSION
+unset DOCKERFILES_JRE_8_VERSION
+unset VERSIONS

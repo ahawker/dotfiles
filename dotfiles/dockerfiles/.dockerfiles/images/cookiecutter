@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "cookiecutter" dockerfiles image.
+
+# Versions
+DOCKERFILES_COOKIECUTTER_1_6_0_VERSION="1.6.0"
+DOCKERFILES_COOKIECUTTER_1_6_VERSION="$DOCKERFILES_COOKIECUTTER_1_6_0_VERSION"
+DOCKERFILES_COOKIECUTTER_1_VERSION="$DOCKERFILES_COOKIECUTTER_1_6_VERSION"
+export DOCKERFILES_COOKIECUTTER_LATEST_VERSION="$DOCKERFILES_COOKIECUTTER_1_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_COOKIECUTTER_1_6_0_VERSION)
+export DOCKERFILES_COOKIECUTTER_VERSIONS="$VERSIONS"
+
+cookiecutter() {
+	_set_docker_run_image cookiecutter "${IMAGE_VERSION:-$DOCKERFILES_COOKIECUTTER_LATEST_VERSION}" "${IMAGE_TAG:-""}"
+	_set_docker_run_args cookiecutter "$@"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+_set_aliases_for_image cookiecutter cookiecutter "$VERSIONS"
+
+unset DOCKERFILES_COOKIECUTTER_1_6_0_VERSION
+unset DOCKERFILES_COOKIECUTTER_1_6_VERSION
+unset DOCKERFILES_COOKIECUTTER_1_VERSION
+unset VERSIONS
