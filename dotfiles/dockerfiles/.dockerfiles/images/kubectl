@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+#
+# Shell functions and aliases for using the "kubectl" dockerfiles image.
+
+# Versions
+DOCKERFILES_KUBECTL_1_11_1_VERSION="1.11.1"
+DOCKERFILES_KUBECTL_1_11_VERSION="$DOCKERFILES_KUBECTL_1_11_1_VERSION"
+DOCKERFILES_KUBECTL_1_VERSION="$DOCKERFILES_KUBECTL_1_11_VERSION"
+export DOCKERFILES_KUBECTL_LATEST_VERSION="$DOCKERFILES_KUBECTL_1_VERSION"
+
+# shellcheck disable=2039
+declare -a VERSIONS=($DOCKERFILES_KUBECTL_1_11_1_VERSION)
+export DOCKERFILES_KUBECTL_VERSIONS="$VERSIONS"
+
+kubectl() {
+	_set_docker_run_image kubectl "${IMAGE_VERSION:-$DOCKERFILES_KUBECTL_VERSIONS}" "${IMAGE_TAG:-""}"
+	_set_docker_run_args kubectl "$@"
+
+	docker run \
+		--interactive \
+		--tty \
+		--rm \
+		--env-file "$DOCKERFILES_ENV_FILE" \
+		--volume "$HOME/.kube:$HOME/.kube" \
+		--volume "$(pwd):$DOCKERFILES_WORKDIR" \
+		--workdir "$DOCKERFILES_WORKDIR" \
+		$DOCKER_RUN_IMAGE $DOCKER_RUN_ARGS
+}
+
+_set_aliases_for_image kubectl "$VERSIONS[@]"
+
+unset DOCKERFILES_KUBECTL_1_11_1_VERSION
+unset DOCKERFILES_KUBECTL_1_11_VERSION
+unset DOCKERFILES_KUBECTL_1_VERSION
+unset VERSIONS
