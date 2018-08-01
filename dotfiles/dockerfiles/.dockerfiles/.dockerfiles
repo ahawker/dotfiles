@@ -313,3 +313,5 @@ _set_aliases_for_image() {
 	unset VERSIONS
 }
 
+# Source all image files into the current shell.
+for f in $(find "$HOME/.dockerfiles/images" -type f 2> /dev/null); do . "$f"; done
