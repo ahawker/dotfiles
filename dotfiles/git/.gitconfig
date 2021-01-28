@@ -20,3 +20,5 @@
 [user]
 	name = Andrew Hawker
 	email = andrew.r.hawker@gmail.com
+[fetch]
+        prune = true
