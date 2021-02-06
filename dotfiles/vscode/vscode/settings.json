@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.renderWhitespace": "all",
+    "files.autoSave": "onFocusChange",
+    "editor.renderControlCharacters": false,
+    "workbench.colorTheme": "Visual Studio Light",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 0
+}
