@@ -1,0 +1,14 @@
+Arjun.swagger-viewer
+attilabuti.vscode-mjml
+bradlc.vscode-tailwindcss
+EditorConfig.EditorConfig
+hashicorp.terraform
+jock.svg
+k--kato.intellij-idea-keybindings
+ms-azuretools.vscode-docker
+ms-python.python
+ms-toolsai.jupyter
+redhat.vscode-yaml
+svelte.svelte-vscode
+sysoev.language-stylus
+tht13.html-preview-vscode
