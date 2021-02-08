@@ -47,6 +47,7 @@ cask 'goland'
 cask 'google-chrome'
 cask 'iterm2'
 cask 'pycharm'
+cask 'spotify'
 cask 'visual-studio-code'
 cask 'zoom'
 
