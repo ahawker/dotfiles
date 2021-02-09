@@ -77,7 +77,7 @@ test: stow reinstall | test-requirements  ## Run 'shellcheck' tests against dotf
 
 .PHONY: stow
 stow: | requirements
-	@(cd $(STOW_DIR) && exec stow -t $(STOW_TARGET) -R stow)
+	@(cd $(STOW_DIR) && exec stow --adopt -t $(STOW_TARGET) -R stow)
 
 .PHONY: requirements
 requirements: requires-command-stow \
