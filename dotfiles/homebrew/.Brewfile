@@ -50,6 +50,7 @@ cask 'iterm2'
 cask 'pycharm'
 cask 'spotify'
 cask 'visual-studio-code'
+cask 'vlc'
 cask 'zoom'
 
 mas 'Slack', id: 803453959
