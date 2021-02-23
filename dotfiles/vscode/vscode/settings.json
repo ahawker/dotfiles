@@ -3,7 +3,7 @@
     "editor.renderWhitespace": "all",
     "files.autoSave": "onFocusChange",
     "editor.renderControlCharacters": false,
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Solarized Dark",
     "editor.multiCursorModifier": "ctrlCmd",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.enablePreview": false,
