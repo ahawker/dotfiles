@@ -1,0 +1,32 @@
+# Stop checking parent directories for config files.
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# Make sure every file has a blank line at the end
+insert_final_newline = true
+
+# Remove any whitespace characters preceding newline characters
+trim_trailing_whitespace = true
+
+# Give operators breathing room, but not brackets
+spaces_around_operators = true
+spaces_around_brackets = false
+
+[.js]
+quote_type = single
+curly_bracket_next_line = false
+indent_size = 2
+
+[.html]
+quote_type = double
+
+[Makefile]
+indent_style = tab
+
+[*.md]
+trim_trailing_whitespace = false
