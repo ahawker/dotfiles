@@ -25,7 +25,7 @@
 	default = simple
 [user]
 	name = Andrew Hawker
-	email = andrew.r.hawker@gmail.com
+	email = andrew.hawker@auth0.com
 [fetch]
 	prune = true
 [pull]
