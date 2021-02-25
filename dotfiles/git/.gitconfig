@@ -1,18 +1,18 @@
 [alias]
-        pr = "!hub pull-request"
+	pr = "!hub pull-request"
 [apply]
 	whitespace = fix
 [color]
-        ui = auto
+	ui = auto
 [commit]
 	gpgsign = false
 [core]
 	attributesfile = ~/.gitattributes
-        excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 	trustctime = false
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [diff]
-        renames = copies
+	renames = copies
 [help]
 	autocorrect = 1
 [push]
@@ -21,4 +21,4 @@
 	name = Andrew Hawker
 	email = andrew.r.hawker@gmail.com
 [fetch]
-        prune = true
+	prune = true
