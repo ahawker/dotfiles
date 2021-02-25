@@ -6,6 +6,7 @@ tap 'heroku/brew'
 
 brew 'ack'
 brew 'awscli'
+brew 'azure-cli'
 brew 'bat'
 brew 'coreutils'
 brew 'curl'
