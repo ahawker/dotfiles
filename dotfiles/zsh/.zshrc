@@ -27,7 +27,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws docker git jira pip vagrant)
+plugins=(aws docker git jira pip)
 
 # Oh-my-zsh
 # https://github.com/robbyrussell/oh-my-zsh
