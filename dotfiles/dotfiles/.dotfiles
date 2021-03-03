@@ -13,3 +13,6 @@
 #. "$HOME/.dockerfiles/.dockerfiles.vars"
 #. "$HOME/.dockerfiles/.dockerfiles"
 #. "$HOME/.iterm2"
+
+# Source path files.
+for f in $(find "$HOME/dotfiles" -type f -name 'path' 2> /dev/null); do . "$f"; done
