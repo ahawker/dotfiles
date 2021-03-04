@@ -4,5 +4,5 @@
 # Ignore editor temp files
 .+~
 
-# Ignore path files from dotfiles repo
-path\.sh$
+# Ignore exports files from dotfiles repo
+exports$
