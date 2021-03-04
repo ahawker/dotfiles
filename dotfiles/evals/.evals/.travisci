@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-[ -f "$HOME/.travis/travis.sh" ] && . "$HOME/.travis/travis.sh"
