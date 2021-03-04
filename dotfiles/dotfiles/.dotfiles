@@ -14,6 +14,7 @@
 #. "$HOME/.dockerfiles/.dockerfiles"
 #. "$HOME/.iterm2"
 
-# Source path files.
+# Source path, alias, and eval files.
 for f in $(find "$HOME/dotfiles" -type f -name 'path' 2> /dev/null); do . "$f"; done
 for f in $(find "$HOME/dotfiles" -type f -name 'alias' 2> /dev/null); do . "$f"; done
+for f in $(find "$HOME/dotfiles" -type f -name 'eval' 2> /dev/null); do . "$f"; done
