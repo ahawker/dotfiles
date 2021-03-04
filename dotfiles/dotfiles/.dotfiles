@@ -5,16 +5,8 @@
 # The goal of this file is to be central "entrypoint" for all dotfiles
 # repository context instead of duplicating it across .rc files, e.g. .bashrc/.zshrc.
 
-# shellcheck disable=2044
-#for f in $(find "$HOME/.aliases/" -type f 2> /dev/null); do . "$f"; done
-#for f in $(find "$HOME/.exports/" -type f 2> /dev/null); do . "$f"; done
-#for f in $(find "$HOME/.evals/" -type f 2> /dev/null); do . "$f"; done
-
-#. "$HOME/.dockerfiles/.dockerfiles.vars"
-#. "$HOME/.dockerfiles/.dockerfiles"
-#. "$HOME/.iterm2"
-
 # Source path, alias, and eval files.
+# shellcheck disable=2044
 for f in $(find "$HOME/dotfiles" -type f -name 'path' 2> /dev/null); do . "$f"; done
 for f in $(find "$HOME/dotfiles" -type f -name 'alias' 2> /dev/null); do . "$f"; done
 for f in $(find "$HOME/dotfiles" -type f -name 'eval' 2> /dev/null); do . "$f"; done
