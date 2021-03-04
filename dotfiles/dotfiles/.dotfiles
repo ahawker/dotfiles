@@ -16,3 +16,4 @@
 
 # Source path files.
 for f in $(find "$HOME/dotfiles" -type f -name 'path' 2> /dev/null); do . "$f"; done
+for f in $(find "$HOME/dotfiles" -type f -name 'alias' 2> /dev/null); do . "$f"; done
