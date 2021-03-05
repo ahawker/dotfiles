@@ -22,3 +22,5 @@
 	email = andrew.r.hawker@gmail.com
 [fetch]
 	prune = true
+[pull]
+	rebase = true
