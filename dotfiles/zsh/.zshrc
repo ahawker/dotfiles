@@ -60,3 +60,6 @@ fi
 
 # Include iterm2 shell integration for zsh.
 test -e "${HOME}/.iterm2/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2/.iterm2_shell_integration.zsh" || true
+
+# Load environment with direnv.
+eval "$(direnv hook zsh)"
