@@ -1,3 +1,4 @@
+tap 'bufbuild/buf'
 tap 'homebrew/cask'
 tap "homebrew/cask-versions"
 tap 'homebrew/core'
@@ -10,6 +11,7 @@ brew 'ack'
 brew 'awscli'
 brew 'azure-cli'
 brew 'bat'
+brew 'buf'
 brew 'coreutils'
 brew 'curl'
 brew 'direnv'
