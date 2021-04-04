@@ -52,6 +52,7 @@ brew 'tfenv'
 brew 'volta'
 brew 'wget'
 brew 'xsv'
+brew 'youtube-dl'
 brew 'zsh'
 brew 'zsh-syntax-highlighting'
 
