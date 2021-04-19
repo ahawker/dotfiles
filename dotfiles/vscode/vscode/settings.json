@@ -8,5 +8,11 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.enablePreview": false,
     "editor.minimap.enabled": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }
