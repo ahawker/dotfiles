@@ -3,7 +3,7 @@
     "editor.renderWhitespace": "all",
     "files.autoSave": "onFocusChange",
     "editor.renderControlCharacters": false,
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Solarized Light",
     "editor.multiCursorModifier": "ctrlCmd",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.enablePreview": false,
@@ -11,5 +11,10 @@
     "window.zoomLevel": 0,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
     }
 }
