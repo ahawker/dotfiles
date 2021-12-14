@@ -63,3 +63,13 @@ test -e "${HOME}/.iterm2/.iterm2_shell_integration.zsh" && source "${HOME}/.iter
 
 # Load environment with direnv.
 eval "$(direnv hook zsh)"
+
+export ITERM2_PANE_NAME=
+
+iterm2_print_user_vars() {
+  iterm2_set_user_var pane $ITERM2_PANE_NAME
+}
+
+pane() {
+    export ITERM2_PANE_NAME="$@"
+}
