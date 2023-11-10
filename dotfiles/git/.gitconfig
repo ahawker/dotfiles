@@ -20,6 +20,8 @@
 	sparseCheckout = false
 [diff]
 	renames = copies
+[gpg]
+	format = ssh
 [help]
 	autocorrect = 1
 [push]
@@ -28,6 +30,7 @@
 [user]
 	name = Andrew Hawker
 	email = andrew.hawker@auth0.com
+	signingKey = /Users/andrew.hawker/.ssh/id_ed25519_sk
 [fetch]
 	prune = true
 [pull]
@@ -39,3 +42,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[gpg "ssh"]
+	allowedSignersFile = /Users/andrew.hawker/.ssh/allowed_signers
