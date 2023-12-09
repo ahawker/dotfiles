@@ -3,6 +3,8 @@
 
 [alias]
 	pr = "!hub pull-request"
+	count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
+	delete-squashed = "!f() { local targetBranch=${1:-main} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
 [apply]
 	whitespace = fix
 [color]
@@ -14,6 +16,7 @@
 	excludesfile = ~/.gitignore
 	trustctime = false
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	ignorecase = false
 [diff]
 	renames = copies
 [help]
@@ -26,6 +29,6 @@
 [fetch]
 	prune = true
 [pull]
-	rebase = true
+	rebase = false
 [init]
 	defaultBranch = main
