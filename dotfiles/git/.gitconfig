@@ -17,12 +17,14 @@
 	trustctime = false
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 	ignorecase = false
+	sparseCheckout = false
 [diff]
 	renames = copies
 [help]
 	autocorrect = 1
 [push]
-	default = simple
+	autoSetupRemote = true
+	default = current
 [user]
 	name = Andrew Hawker
 	email = andrew.r.hawker@gmail.com
@@ -32,3 +34,8 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
