@@ -7,4 +7,4 @@
 
 # Source export files.
 # shellcheck disable=2044
-for f in $(find "$HOME/dotfiles" -type f -name 'exports' 2> /dev/null); do . "$f"; done
+for f in $(find "$HOME/src/github.com/ahawker/dotfiles" -type f -name 'exports' 2> /dev/null); do . "$f"; done
