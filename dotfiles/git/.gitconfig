@@ -46,3 +46,6 @@
 	name = Andrew Hawker
 	email = andrew.hawker@okta.com
 	signingkey = 1FE46B1FF40DA0DB
+
+[includeIf "gitdir:~/src/github.com/ahawker/**"]
+    path = ~/.gitconfig.personal
