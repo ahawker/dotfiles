@@ -73,3 +73,13 @@ iterm2_print_user_vars() {
 pane() {
     export ITERM2_PANE_NAME="$@"
 }
+
+#export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+export KUBECONFIG="$KUBECONFIG:/Users/andrew.hawker/.kube/layer0-dev:$HOME/.kube/layer0-prod"
+
+it2prof() { echo -e "\033]50;SetProfile=$1\a" }
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Created by `pipx` on 2024-07-08 02:15:46
+export PATH="$PATH:/Users/andrew.hawker/.local/bin"
